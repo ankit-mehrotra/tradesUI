@@ -1,0 +1,12 @@
+{
+  "name": "tradeblotter",
+  "version": "1.0.0",
+  "description": "Trade Blotter UI component",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"app.js"
+  },
+  "author": "Ankit Mehrotra",
+  "license": "ISC"
+}
