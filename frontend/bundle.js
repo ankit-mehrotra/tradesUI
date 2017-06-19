@@ -1,0 +1,1 @@
+console.error("Error: SyntaxError: Unexpected token } in JSON at position 202 while parsing json file C:\\Users\\AnkitDeboFuku\\Documents\\tradesUI\\frontend\\package.json");

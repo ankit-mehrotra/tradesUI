@@ -5,10 +5,64 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+  <style>
+.inline-table{
+  display:inline-block;
+}
+.inline-table th{
+  width:280px;
+}
+.inline-table.indent-table th{
+  width:245px;
+}
+  </style>
 </head>
-<body>
+<body ng-app='tradeBlotter' ng-controller='TradeBlotterCtrl as ctrl' >
   <h1>Trade Blotter</h1>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js'></script>
-  <script src='index.js'></script>
+  <button id='calculate-pl' class='btn btn-primary' ng-click="ctrl.calculatePl()">Calculate P/L</button>
+  <table class='table'>
+    <tr class='inline-table'>
+            <th>Group</th>
+
+            <tr class='inline-table' id='table-header'><th>Txn Id</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Market Value</th></tr>
+        </tr>
+
+<tbody>
+           <tr ng-repeat="(key,value) in ctrl.listItem | groupBy: 'Symbol'">
+             <td>
+            <!-- <td>{{value.Symbol}}</td>
+
+            <td>{{value.TxnId}}</td>
+            <td>{{value.Quantity}}</td> -->
+            {{key}}
+           <table class='table'>
+
+              <tr ng-repeat="item in value | orderBy: 'TxnId'">
+
+                 <td>{{item.Action}}</td>
+                 <td>{{item.Quantity}}</td>
+                 <td>{{item.TxnId}}</td>
+                 <td>{{item.Price}}</td>
+                 <td>{{item.MarketValue}}</td>
+                 <td ng-show='ctrl.onplshow'>{{item.plval}}</td>
+             </tr>
+           </table>
+ </td>
+        </tr>
+</tbody>
+</table>
+<script src='node_modules/jquery/dist/jquery.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.16/angular-filter.js'></script>
+<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script> -->
+
+
+
+ <script src='index.js'></script>
 </body>
 </html>

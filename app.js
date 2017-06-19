@@ -22,11 +22,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get('/getdata', function(req, res) {
   fs.readFile('trades.json', 'utf8', function (err, data) {
     if (err) console.log(err);
-    console.log(data);
-    res.send(data);
+    res.jsonp(data);
   });
 });
 
-app.listen(8081, function() {
-  console.log('Server running at http://127.0.0.1:8081/');
+app.listen(3000, function() {
+  console.log('Server running at http://127.0.0.1:3000/');
 });
