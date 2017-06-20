@@ -28,7 +28,7 @@
     self.calculatePl = function(){
       self.onplshow = true;
       var addheader = document.querySelector("#table-header");
-      $(addheader).addClass("indent-table").append("<th>P/L</th>");
+     $(addheader).addClass("indent-table").append("<th>P/L</th>");
      var itemList = self.listItem;
      var cumpl=0,pl=0,diff;conct=[];
      var result = self.listItem.map(function(a){
@@ -36,10 +36,14 @@
      });
      result= $.unique(result);
     for(var i=0;i<result.length;i++){
-       conct = conct.concat(_.filter(self.listItem,['Symbol',result[i]]))  ;
+       conct = conct.concat(_.filter(self.listItem,['Symbol',result[i]])).sort(function(a,b){
+         return a.TxnId - b.TxnId;
+       })  ;
      }
     var buyResult = _.filter(conct,['Action','Buy']);
+    console.log(buyResult);
     var sellResult = _.filter(conct,['Action','Sell']);
+    console.log(sellResult);
      conct.forEach(function(item){
         if(item.Action == 'Sell')
         {
@@ -63,10 +67,11 @@
       for(var j=0;j<arr2.length;j++){
        diff = arr1[j].Quantity - arr2[j].Quantity;
       if(diff > 0){
-        pl = (arr2[j].Price - arr1[j].Price)* arr2[j].Quantity;
+        pl = (arr2[j].Price - arr1[j].Price)* arr2[j].Quantity; 
       }
       if(diff < 0){
         pl= (arr2[j].Price - arr1[j].Price)* arr1[j].Quantity;
+
       }
       if(diff == 0){
         pl= (arr2[j].Price - arr1[j].Price)* arr1[j].Quantity;
